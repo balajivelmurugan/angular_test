@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+ul{
+	list-style:none;
+}
+
+.user-list li{
+	margin-bottom:10px;
+}
+a .cursor{
+	cursor:pointer;
+}
+.modal-content{
+	width:50%;
+	margin-left:30%;
+}

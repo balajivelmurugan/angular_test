@@ -1,0 +1,33 @@
+{{selectedusername}} <span *ngIf=selectedusername>>></span> {{selectedalbums}} <br>
+<div id="user-data" *ngIf=userdatalist class="modal-content">
+<h1 class="modal-header">Users List</h1><br>
+<ul class="user-list modal-body">
+  <li *ngFor="let username of userdata">
+    <a class="col-sm-12 row">
+      <span class="card col-sm-2 bg-info">{{username.id}}</span>&nbsp;<span class="card col-sm-9 bg-info cursor" (click)="getAlbum(username.id);selectedusername =username.name">{{username.name}}</span>
+    </a>
+  </li>
+</ul>
+</div>
+
+<div id="album-data" *ngIf=albumdatalist class="modal-content">
+<div class="modal-header"><h1>{{selectedusername}}'s Album</h1><button (click)="goback('user');selectedusername=''" class="btn-warning btn">Back</button></div>
+<ul class="user-list modal-body">
+  <li *ngFor="let albums of albumdata">
+    <a class="col-sm-12 row">
+      <span class="card col-sm-2 bg-info">{{albums.id}}</span>&nbsp;<span class="card col-sm-9 bg-info cursor" (click)="getImages(albums.id);selectedalbums=albums.title">{{albums.title}}</span>
+    </a>
+  </li>
+</ul>
+</div>
+
+<div class="image-data" *ngIf=imagedatalist class="modal-content">
+<div class="modal-header"><h1>{{selectedalbums}}'s Photos</h1><button (click)="goback('album');selectedalbums=''" class="btn-warning btn">Back</button></div>
+<div class="row modal-body">
+  <div *ngFor="let imgs of imgdata">
+    <!-- <a (click)="getimages(albums.id)"> -->
+	  <img src="{{imgs.thumbnailUrl}}">&nbsp;
+    <!-- </a> -->
+  </div>
+</div>
+</div>
