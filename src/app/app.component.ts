@@ -8,9 +8,16 @@ import { HttpClient} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+userdatalist: boolean;
+albumdatalist: boolean;
+imagedatalist: boolean;
+userdata: any = [];
+albumdata: any = [];
+imgdata: any = [];
+resdata: any = [];
 	//userdatalist boolean;
-	constructor(private http: HttpClient){
-	}
+	constructor(private http: HttpClient){}
 
 ngOnInit() {
     this.userdatalist = true;
@@ -32,9 +39,11 @@ ngOnInit() {
 		this.userdatalist= false;
 		this.albumdatalist= true;
 	  this.http.get('https://jsonplaceholder.typicode.com/albums').subscribe(res => {
-		  for(var i=0;i<res.length;i++){
-		   if(res[i].userId == userid){
-				this.albumdata.push(res[i]);  
+		  this.resdata = res;
+		  for(var i=0;i<this.resdata.length;i++){
+		   if(this.resdata[i].userId == userid){
+				this.albumdata.push(this.resdata[i]);
+				this.resdata = [];
 			}
 		  }
 	  });
@@ -46,9 +55,11 @@ ngOnInit() {
 	this.albumdatalist = false;
 	this.imagedatalist = true;
 	  this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe(res => {
-		for(var i=0;i<res.length;i++){
-		   if((res[i].albumId == albumid) && (this.imgdata.length < 5)){
-				this.imgdata.push(res[i]);  
+		  this.resdata = res;
+		for(var i=0;i<this.resdata.length;i++){
+		   if((this.resdata[i].albumId == albumid) && (this.imgdata.length < 5)){
+				this.imgdata.push(this.resdata[i]);
+				this.resdata = [];
 			}
 		  }
 		  console.log(this.imgdata);
