@@ -43,9 +43,9 @@ ngOnInit() {
 		  for(var i=0;i<this.resdata.length;i++){
 		   if(this.resdata[i].userId == userid){
 				this.albumdata.push(this.resdata[i]);
-				this.resdata = [];
 			}
 		  }
+		  this.resdata = [];
 	  });
   }
   
@@ -55,14 +55,14 @@ ngOnInit() {
 	this.albumdatalist = false;
 	this.imagedatalist = true;
 	  this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe(res => {
+		  console.log(res);
 		  this.resdata = res;
 		for(var i=0;i<this.resdata.length;i++){
 		   if((this.resdata[i].albumId == albumid) && (this.imgdata.length < 5)){
 				this.imgdata.push(this.resdata[i]);
-				this.resdata = [];
 			}
 		  }
-		  console.log(this.imgdata);
+		this.resdata = [];
 	  });
   }
   
